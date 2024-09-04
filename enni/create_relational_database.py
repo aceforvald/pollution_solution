@@ -30,12 +30,11 @@ def create_location_dim(data, save_directory):
 def create_time_dim(data, save_directory):
 
     # TODO split day and month as different columns
-    
+
     time_df = data[['day','time']].copy()
 
     time_df = time_df.drop_duplicates()
     time_df.insert(0, "id", np.arange(len(time_df['day'])), True)
-    print(time_df)
     
     file_name = os.path.join(save_directory, 'dim_time.csv')
     time_df.to_csv(file_name, mode='w', index=False)
@@ -48,7 +47,7 @@ def create_values_dim(data, save_directory):
     values_df.to_csv(file_name, mode='w', index=False)
 
 def create_relations(data, save_directory):
-
+    # TODO create function for open csvs
     cwd = os.path.dirname(os.path.realpath(__file__))
     directory = os.path.join(cwd, 'relational_data\dim_location.csv')
     location_data = pd.read_csv(directory)
@@ -59,11 +58,23 @@ def create_relations(data, save_directory):
 
     cwd = os.path.dirname(os.path.realpath(__file__))
     directory = os.path.join(cwd, 'relational_data\dim_values.csv')
-    time_data = pd.read_csv(directory)
+    value_data = pd.read_csv(directory)
 
-    relations_df = location_data[['id']].copy()
-    
-    # TODO add other columns
+    relations_df = value_data[['id']].copy()
+    relations_df = relations_df.rename(columns={"id": "value id"})
+
+    column = []
+    for i in range(len(data['day'])):
+        val = time_data[(time_data['day'] == data['day'][i]) & (time_data['time'] == data['time'][i])]
+        column.append(int(val['id']))
+    relations_df.insert(1, "time id", column, True)
+
+    column = []
+    for i in range(len(data['id'])):
+        val = location_data[(location_data['id'] == data['id'][i])]
+        print(val)
+        column.append(int(val['id']))
+    relations_df.insert(2, "location id", column, True)
     
     file_name = os.path.join(save_directory, 'relations.csv')
     relations_df.to_csv(file_name, mode='w', index=False)
