@@ -10,8 +10,8 @@ import os
 import configparser
 
 import api
-import cleansing
-import postgres
+import create_realtional_database
+import to_postgres
 
 CURR_DIR_PATH = os.path.dirname(os.path.realpath(__file__))
 
@@ -29,14 +29,14 @@ with DAG("project_dag", start_date=datetime(2021, 1, 1),
                     python_callable=api._start_api
             )
 
-            cleanse_data = PythonOperator (
+            database_call = PythonOperator (
                     task_id="cleanse_data",
-                    python_callable=cleansing._start_cleansing
+                    python_callable=create_realtional_database._start_create_realtional_database
             )
+
             postgres_call = PythonOperator (
                     task_id="postgres_call",
-                    python_callable=postgres._start_post
+                    python_callable=to_postgres._start_post_to_postgres
             )
 
-
-            api_call >> cleanse_data >> postgres_call
+            api_call >> database_call >> postgres_call
