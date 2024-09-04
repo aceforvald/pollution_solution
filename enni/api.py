@@ -64,7 +64,7 @@ def save_same_file(sensor_data, wanted_params, save_directory):
 
     # add row to csv file
     df = pd.DataFrame([row])
-    file_name = os.path.join(save_directory, 'all_sensor_data.csv')
+    file_name = os.path.join(save_directory, 'sensor_data_all.csv')
     df.to_csv(file_name, mode='a', header=not pd.io.common.file_exists(file_name), index=False)
 
 def save_different_files(sensor_data, wanted_params, save_directory):
