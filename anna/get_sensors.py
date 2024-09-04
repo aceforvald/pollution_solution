@@ -1,15 +1,21 @@
 import requests
+import os
 import pandas as pd
 from pandas import json_normalize
 
-API_KEY = '7b2fbb569507ae14141d3de0ff76044999ae3859816024ab9d2978c83bc3d804'
-base_url = 'https://api.openaq.org/v2/locations'
-
-headers = {
-    "Accept": "application/json",
-    "X-API-Key": API_KEY}
+# file path for saving
+cwd = os.path.dirname(os.path.realpath(__file__))
+save_directory = os.path.join(cwd, 'data')
+os.makedirs(save_directory, exist_ok=True)
 
 def add_sensors(lat, lon):
+    API_KEY = '7b2fbb569507ae14141d3de0ff76044999ae3859816024ab9d2978c83bc3d804'
+    base_url = 'https://api.openaq.org/v2/locations'
+
+    headers = {
+        "Accept": "application/json",
+        "X-API-Key": API_KEY}
+
     params = {
         'limit': 100,
         'page': 1,
@@ -63,8 +69,12 @@ def get_sensors(lat, lon, metro, sensors_df):
     
     sensors_df = pd.concat([sensors_df, add_sensors_df], ignore_index=True)
     
+    # save as csv (w/o original parameters list), return dataframe (w original parameters list)
+    sensors_to_csv = sensors_df.drop(columns=['parameters'])
+    file_name = os.path.join(save_directory, 'sensors.csv')
+    sensors_to_csv.to_csv(file_name, mode='w', header=not pd.io.common.file_exists(file_name), index=False)
     return sensors_df
-    
+
 if __name__ == '__main__':
     test_locations = {'Madrid': [40.42188, -3.70079],
                  'Berlin': [52.51998, 13.38695],
@@ -161,8 +171,6 @@ if __name__ == '__main__':
                 'Perm District': [58.014965, 56.246723],
                 'Volgograd': [48.7081906, 44.5153353],
                 'Odesa': [46.4843023, 30.7322878]}
-
-    #all_sensors = pd.DataFrame()
 
     def get_set(cities):
         all_sensors = pd.DataFrame()
