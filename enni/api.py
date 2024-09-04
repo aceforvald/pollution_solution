@@ -52,7 +52,7 @@ def save_same_file(sensor_data, wanted_params, save_directory):
         'time': sensor_dict.get('lastUpdated')[11:16],
         'pm25': '',
         'pm10': '',
-        's02': '',
+        'so2': '',
         'no': '',
         'o3': ''
         }
@@ -79,7 +79,7 @@ def save_different_files(sensor_data, wanted_params, save_directory):
         'time': sensor_dict.get('lastUpdated')[11:16],
         'pm25': '',
         'pm10': '',
-        's02': '',
+        'so2': '',
         'no': '',
         'o3': ''
         }

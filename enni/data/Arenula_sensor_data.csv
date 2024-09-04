@@ -1,2 +1,2 @@
-id,location,lat,lon,day,time,pm25,pm10,s02,no,o3
+id,location,lat,lon,day,time,pm25,pm10,so2,no,o3
 7529,Arenula,41.894020000000005,12.475368000000001,2024-09-03,02:00,15.0,22.0,,1.0,30.0
