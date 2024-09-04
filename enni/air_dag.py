@@ -10,7 +10,7 @@ import os
 import configparser
 
 import api
-import create_realtional_database
+import create_relational_database
 import to_postgres
 
 CURR_DIR_PATH = os.path.dirname(os.path.realpath(__file__))
@@ -31,7 +31,7 @@ with DAG("project_dag", start_date=datetime(2021, 1, 1),
 
             database_call = PythonOperator (
                     task_id="cleanse_data",
-                    python_callable=create_realtional_database._start_create_realtional_database
+                    python_callable=create_relational_database._start_create_relational_database
             )
 
             postgres_call = PythonOperator (
