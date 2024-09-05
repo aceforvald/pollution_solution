@@ -2,6 +2,7 @@ import os
 import pandas as pd
 import numpy as np
 
+# TODO comment each step
 def _start_create_relational_database():
 
     cwd = os.path.dirname(os.path.realpath(__file__))
@@ -28,9 +29,6 @@ def create_location_dim(data, save_directory):
     location_df.to_csv(file_name, mode='w', index=False)
 
 def create_time_dim(data, save_directory):
-
-    # TODO split day and month as different columns
-
     time_df = data[['day','time']].copy()
 
     time_df = time_df.drop_duplicates()

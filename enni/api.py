@@ -11,21 +11,25 @@ def _start_api():
            6: 'so2',
            19843: 'no'}
 
-    # Madrid, London, Berlin, Rome, Helsinki
-    sensors = [4318, 154, 4767, 7529, 4593]
+    sensors_file = pd.read_csv("C:\grad_project\pollution_solution\enni\sensors.csv")
+    sensors = sensors_file[sensors_file.columns[0]]
+    print(sensors)
 
     # file path for saving
     cwd = os.path.dirname(os.path.realpath(__file__))
     save_directory = os.path.join(cwd, 'data')
     os.makedirs(save_directory, exist_ok=True)
 
+
     # save data in same csv file
     for sensor in sensors:
         sensor_data = get_location(sensor, API_KEY, wanted_params)
         save_same_file(sensor_data, wanted_params, save_directory)
 
+"""
         # save data in different csv files grouped by locations
         save_different_files(sensor_data, wanted_params, save_directory)
+"""
 
 # call api with provided location id
 def get_location(location_id, API_KEY, wanted_params):
@@ -41,7 +45,11 @@ def get_location(location_id, API_KEY, wanted_params):
 
 # saves all the locations in the same csv file
 def save_same_file(sensor_data, wanted_params, save_directory):
-    sensor_dict = sensor_data.get('results', [])[0]
+    try:
+        sensor_dict = sensor_data.get('results', [])[0]
+    except:
+        print("row skipped, check sensors_all.csv")
+        return
 
     # create row dictionary for storing variables to keep
     row = {'id': sensor_dict.get('id', ''),
@@ -64,9 +72,17 @@ def save_same_file(sensor_data, wanted_params, save_directory):
 
     # add row to csv file
     df = pd.DataFrame([row])
+
+    print(row['id'])
+
     file_name = os.path.join(save_directory, 'sensor_data_all.csv')
     df.to_csv(file_name, mode='a', header=not pd.io.common.file_exists(file_name), index=False)
 
+    # remove duplicates
+    df = pd.read_csv(file_name)
+    df = df.drop_duplicates()
+    df.to_csv(file_name, mode='w', index=False)
+"""
 def save_different_files(sensor_data, wanted_params, save_directory):
     sensor_dict = sensor_data.get('results', [])[0]
 
@@ -91,8 +107,15 @@ def save_different_files(sensor_data, wanted_params, save_directory):
 
     # add row to csv file
     df = pd.DataFrame([row])
+
     file_name = os.path.join(save_directory, row['location'] + '_sensor_data.csv')
     df.to_csv(file_name, mode='a', header=not pd.io.common.file_exists(file_name), index=False)
+
+    # remove duplicates
+    df = pd.read_csv(file_name)
+    df = df.drop_duplicates()
+    df.to_csv(file_name, mode='w', index=False)
+"""
 
 #comment this when using airflow
 _start_api()
