@@ -15,6 +15,8 @@ def _start_create_relational_database():
     data = read_file('data\sensor_data_all.csv')
 
     # create new csv files for relational databases tables
+    create_country_dim(data, save_directory)
+    create_city_dim(data, save_directory)
     create_location_dim(data, save_directory)
     create_time_dim(data, save_directory)
     create_values_dim(data, save_directory)
@@ -32,12 +34,58 @@ def save_file(file_name, df, save_directory):
     name = os.path.join(save_directory, file_name)
     df.to_csv(name, mode='w', index=False)
 
+# creates csv file for city dimensions table
+def create_city_dim(data, save_directory):
+    country_data = read_file('relational_data\dim_country.csv')
+
+    # slice copy of original pandas data frame for city dimensions dataframe
+    city_df = data[['city', 'country']].copy()
+    
+    city_df = city_df.drop_duplicates().reset_index(drop=True)
+
+    # create id column 
+    city_df.insert(0, "city id", np.arange(len(city_df['city'])), True)
+
+    # add time DataFrames id column to relations table
+    column = []
+    for i in range(len(city_df['country'])):
+        val = country_data[(country_data['country'] == city_df['country'][i]) & (country_data['country'] == city_df['country'][i])]
+        column.append(int(val['id']))
+    
+    city_df.insert(2, "country id", column, True)
+    city_df = city_df.drop('country', axis=1)
+
+    save_file('dim_city.csv', city_df, save_directory)
+
+# creates csv file for country dimensions table
+def create_country_dim(data, save_directory):
+    # slice copy of original pandas data frame for country dimensions dataframe
+    country_df = data[['country']].copy()
+    
+    country_df = country_df.drop_duplicates()
+
+    # create id column 
+    country_df.insert(0, "id", np.arange(len(country_df['country'])), True)
+
+    save_file('dim_country.csv', country_df, save_directory)
+
 # creates csv file for location dimensions table
 def create_location_dim(data, save_directory):
+    city_data = read_file('relational_data\dim_city.csv')
+
     # slice copy of original pandas data frame for location dimensions dataframe
-    location_df = data[['id','location', 'lat', 'lon', 'city', 'country']].copy()
+    location_df = data[['id','location', 'lat', 'lon', 'city']].copy()
     
-    location_df.drop_duplicates()
+    location_df = location_df.drop_duplicates().reset_index(drop=True)
+
+    # add time DataFrames id column to relations table
+    column = []
+    for i in range(len(location_df['city'])):
+        val = city_data[(city_data['city'] == location_df['city'][i]) & (city_data['city'] == location_df['city'][i])]
+        column.append(int(val['city id']))
+    
+    location_df.insert(1, "city id", column, True)
+    location_df = location_df.drop('city', axis=1)
 
     save_file('dim_location.csv', location_df, save_directory)
 

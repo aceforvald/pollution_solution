@@ -15,6 +15,7 @@ def _start_api():
 
     sensors_file = pd.read_csv("C:\grad_project\pollution_solution\enni\sensors.csv")
     sensors = sensors_file[sensors_file.columns[0]]
+    city = sensors_file[sensors_file.columns[-1]]
     print(sensors)
 
     # file path for saving
@@ -22,11 +23,12 @@ def _start_api():
     save_directory = os.path.join(cwd, 'data')
     os.makedirs(save_directory, exist_ok=True)
 
-
     # save data in same csv file
+    i = 0
     for sensor in sensors:
         sensor_data = get_location(sensor, API_KEY, wanted_params)
-        save_same_file(sensor_data, wanted_params, save_directory)
+        save_same_file(sensor_data, wanted_params, save_directory, city[i])
+        i = i +1
 
 """
         # save data in different csv files grouped by locations
@@ -46,7 +48,7 @@ def get_location(location_id, API_KEY, wanted_params):
     return sensor_response.json()
 
 # saves all the locations in the same csv file
-def save_same_file(sensor_data, wanted_params, save_directory):
+def save_same_file(sensor_data, wanted_params, save_directory, city):
     try:
         sensor_dict = sensor_data.get('results', [])[0]
     except:
@@ -56,7 +58,7 @@ def save_same_file(sensor_data, wanted_params, save_directory):
     # create row dictionary for storing variables to keep
     row = {'id': sensor_dict.get('id', ''),
         'location': sensor_dict.get('name', ''),
-        'city': sensor_dict.get('city', ''),
+        'city': city,
         'country': sensor_dict.get('country', ''),
         'lat': sensor_dict.get('coordinates', {}).get('latitude', ''),
         'lon': sensor_dict.get('coordinates', {}).get('longitude', ''),
