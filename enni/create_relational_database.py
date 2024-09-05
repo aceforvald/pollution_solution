@@ -2,6 +2,8 @@ import os
 import pandas as pd
 import numpy as np
 
+# TODO city and country dimension tables 
+
 def _start_create_relational_database():
 
     # create relational_data folder for new csv files
@@ -33,7 +35,7 @@ def save_file(file_name, df, save_directory):
 # creates csv file for location dimensions table
 def create_location_dim(data, save_directory):
     # slice copy of original pandas data frame for location dimensions dataframe
-    location_df = data[['id','location', 'lat', 'lon']].copy()
+    location_df = data[['id','location', 'lat', 'lon', 'city', 'country']].copy()
     
     location_df.drop_duplicates()
 

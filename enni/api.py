@@ -2,6 +2,8 @@ import requests
 import os
 import pandas as pd
 
+# TODO add country code
+
 def _start_api():
     API_KEY = '7b2fbb569507ae14141d3de0ff76044999ae3859816024ab9d2978c83bc3d804'
 
@@ -54,6 +56,8 @@ def save_same_file(sensor_data, wanted_params, save_directory):
     # create row dictionary for storing variables to keep
     row = {'id': sensor_dict.get('id', ''),
         'location': sensor_dict.get('name', ''),
+        'city': sensor_dict.get('city', ''),
+        'country': sensor_dict.get('country', ''),
         'lat': sensor_dict.get('coordinates', {}).get('latitude', ''),
         'lon': sensor_dict.get('coordinates', {}).get('longitude', ''),
         'day': sensor_dict.get('lastUpdated')[:10],
