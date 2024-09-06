@@ -48,7 +48,7 @@ def create_city_dim(data, save_directory):
     column = []
     for i in range(len(city_df['country'])):
         val = country_data[(country_data['Abbreviation'] == city_df['country'][i]) & (country_data['Abbreviation'] == city_df['country'][i])]
-        column.append(int(val['id']))
+        column.append(val['id'].values[0])
     
     city_df.insert(2, "country id", column, True)
     city_df = city_df.drop('country', axis=1)
@@ -94,7 +94,7 @@ def create_location_dim(data, save_directory):
     column = []
     for i in range(len(location_df['city'])):
         val = city_data[(city_data['city'] == location_df['city'][i]) & (city_data['city'] == location_df['city'][i])]
-        column.append(int(val['city id']))
+        column.append(val['city id'].values[0])
     
     location_df.insert(1, "city id", column, True)
     location_df = location_df.drop('city', axis=1)
@@ -136,14 +136,14 @@ def create_relations(data, save_directory):
     column = []
     for i in range(len(data['day'])):
         val = time_data[(time_data['day'] == data['day'][i]) & (time_data['time'] == data['time'][i])]
-        column.append(int(val['id']))
+        column.append(val['id'].values[0])
     relations_df.insert(1, "time id", column, True)
 
     # add location id column to relations table
     column = []
     for i in range(len(data['id'])):
         val = location_data[(location_data['id'] == data['id'][i])]
-        column.append(int(val['id']))
+        column.append(val['id'].values[0])
     relations_df.insert(2, "location id", column, True)
     
     save_file('relations.csv', relations_df, save_directory)
