@@ -65,32 +65,32 @@ def _start_post():
 
     # Create Pandas dataframes from cleansed data csvs
     dim_city = pd.read_csv(
-        CURR_DIR_PATH + "/dim_city.csv",
+        CURR_DIR_PATH + "/relational_data/dim_city.csv",
         sep=",",
     )
 
     dim_country = pd.read_csv(
-        CURR_DIR_PATH + "/dim_country.csv",
+        CURR_DIR_PATH + "/relational_data/dim_country.csv",
         sep=",",
     )
 
     dim_location = pd.read_csv(
-        CURR_DIR_PATH + "/dim_location.csv",
+        CURR_DIR_PATH + "/relational_data/dim_location.csv",
         sep=",",
     )
 
     dim_time = pd.read_csv(
-        CURR_DIR_PATH + "/dim_time.csv",
+        CURR_DIR_PATH + "/relational_data/dim_time.csv",
         sep=",",
     )
 
     dim_values = pd.read_csv(
-        CURR_DIR_PATH + "/dim_values.csv",
+        CURR_DIR_PATH + "/relational_data/dim_values.csv",
         sep=",",
     )
 
     relations = pd.read_csv(
-        CURR_DIR_PATH + "/relations.csv",
+        CURR_DIR_PATH + "/relational_data/relations.csv",
         sep=",",
     )
 
