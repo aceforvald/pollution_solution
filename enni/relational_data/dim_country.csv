@@ -1,6 +1,6 @@
-id,country
-0,ES
-1,DE
-2,GB
-3,IT
-4,FI
+id,Country,Density (P/Km2),Abbreviation,Agricultural Land( %),Land Area(Km2),Armed Forces size,Birth Rate,Calling Code,Capital/Major City,Co2-Emissions,CPI,CPI Change (%),Currency-Code,Fertility Rate,Forested Area (%),Gasoline Price,GDP,Gross primary education enrollment (%),Gross tertiary education enrollment (%),Infant mortality,Largest city,Life expectancy,Maternal mortality ratio,Minimum wage,Official language,Out of pocket health expenditure,Physicians per thousand,Population,Population: Labor force participation (%),Tax revenue (%),Total tax rate,Unemployment rate,Urban_population,Latitude,Longitude
+0,Spain,94,ES,52.60%,"505,370","196,000",7.9,34.0,Madrid,"244,002",110.96,0.70%,EUR,1.26,36.90%,$1.26 ,"$1,394,116,310,769 ",102.70%,88.90%,2.5,Madrid,83.3,4.0,$5.60 ,Spanish,24.20%,3.87,"47,076,781",57.50%,14.20%,47.00%,13.96%,"37,927,409",40.463667,-3.74922
+1,Germany,240,DE,47.70%,"357,022","180,000",9.5,49.0,Berlin,"727,973",112.85,1.40%,EUR,1.56,32.70%,$1.39 ,"$3,845,630,030,824 ",104.00%,70.20%,3.1,Berlin,80.9,7.0,$9.99 ,German,12.50%,4.25,"83,132,799",60.80%,11.50%,48.80%,3.04%,"64,324,835",51.165691,10.451526
+2,United Kingdom,281,GB,71.70%,"243,610","148,000",11.0,44.0,London,"379,025",119.62,1.70%,GBP,1.68,13.10%,$1.46 ,"$2,827,113,184,696 ",101.20%,60.00%,3.6,London,81.3,7.0,$10.13 ,English,14.80%,2.81,"66,834,405",62.80%,25.50%,30.60%,3.85%,"55,908,316",55.378051,-3.435973
+3,Italy,206,IT,43.20%,"301,340","347,000",7.3,39.0,Rome,"320,411",110.62,0.60%,EUR,1.29,31.80%,$1.61 ,"$2,001,244,392,042 ",101.90%,61.90%,2.6,Rome,82.9,2.0,,Italian,22.80%,3.98,"60,297,396",49.60%,24.30%,59.10%,9.89%,"42,651,966",41.87194,12.56738
+4,Finland,18,FI,7.50%,"338,145","25,000",8.6,358.0,Helsinki,"45,871",112.33,1.00%,EUR,1.41,73.10%,$1.45 ,"$268,761,201,365 ",100.20%,88.20%,1.4,Helsinki,81.7,3.0,,Swedish,19.90%,3.81,"5,520,314",59.10%,20.80%,36.60%,6.59%,"4,716,888",61.92411,25.748151

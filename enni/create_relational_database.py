@@ -2,8 +2,6 @@ import os
 import pandas as pd
 import numpy as np
 
-# TODO city and country dimension tables 
-
 def _start_create_relational_database():
 
     # create relational_data folder for new csv files
@@ -12,17 +10,17 @@ def _start_create_relational_database():
     os.makedirs(save_directory, exist_ok=True)
 
     # read data from csv file created in api.py
-    data = read_file('data\sensor_data_all.csv')
+    sensor_data = read_file('data\sensor_data_all.csv')
 
-    # create new csv files for relational databases tables
-    create_country_dim(data, save_directory)
-    create_city_dim(data, save_directory)
-    create_location_dim(data, save_directory)
-    create_time_dim(data, save_directory)
-    create_values_dim(data, save_directory)
-    create_relations(data, save_directory)
+    # create new csv files for relational databases tables in right order
+    create_country_dim(sensor_data, save_directory)
+    create_city_dim(sensor_data, save_directory)
+    create_location_dim(sensor_data, save_directory)
+    create_time_dim(sensor_data, save_directory)
+    create_values_dim(sensor_data, save_directory)
+    create_relations(sensor_data, save_directory)
 
-# reads and returns sensor_data_all.csv as a pandas DataFrame
+# reads csv file and returns it as a pandas DataFrame
 def read_file(path):
     cwd = os.path.dirname(os.path.realpath(__file__))
     directory = os.path.join(cwd, path)
@@ -46,10 +44,10 @@ def create_city_dim(data, save_directory):
     # create id column 
     city_df.insert(0, "city id", np.arange(len(city_df['city'])), True)
 
-    # add time DataFrames id column to relations table
+    # add country id column to city dimensions table
     column = []
     for i in range(len(city_df['country'])):
-        val = country_data[(country_data['country'] == city_df['country'][i]) & (country_data['country'] == city_df['country'][i])]
+        val = country_data[(country_data['Abbreviation'] == city_df['country'][i]) & (country_data['Abbreviation'] == city_df['country'][i])]
         column.append(int(val['id']))
     
     city_df.insert(2, "country id", column, True)
@@ -59,15 +57,29 @@ def create_city_dim(data, save_directory):
 
 # creates csv file for country dimensions table
 def create_country_dim(data, save_directory):
+    # read data for gdp and population
+    gdp_data = read_file('world-data-2023.csv')
+
+    # make empty country dataframe with columns
+    columns_list = ['id'] + list(gdp_data.columns)
+    df = pd.DataFrame(columns=columns_list)
+
     # slice copy of original pandas data frame for country dimensions dataframe
     country_df = data[['country']].copy()
-    
-    country_df = country_df.drop_duplicates()
+    country_df = country_df.drop_duplicates().reset_index(drop=True)
 
-    # create id column 
-    country_df.insert(0, "id", np.arange(len(country_df['country'])), True)
+    # add gdp column to country dimension table
+    for i in range(len(country_df['country'])):
+        row = []
+        row.append(i)
+        val = gdp_data[(gdp_data['Abbreviation'] == country_df['country'][i]) & (gdp_data['Abbreviation'] == country_df['country'][i])]
 
-    save_file('dim_country.csv', country_df, save_directory)
+        for j in range(len(columns_list) -1):
+            row.append(val[columns_list[j+1]].values[0])
+
+        df.loc[len(df)] = row
+
+    save_file('dim_country.csv', df, save_directory)
 
 # creates csv file for location dimensions table
 def create_location_dim(data, save_directory):
@@ -78,7 +90,7 @@ def create_location_dim(data, save_directory):
     
     location_df = location_df.drop_duplicates().reset_index(drop=True)
 
-    # add time DataFrames id column to relations table
+    # add city id column to location dimensions table
     column = []
     for i in range(len(location_df['city'])):
         val = city_data[(city_data['city'] == location_df['city'][i]) & (city_data['city'] == location_df['city'][i])]
@@ -120,14 +132,14 @@ def create_relations(data, save_directory):
     relations_df = value_data[['id']].copy()
     relations_df = relations_df.rename(columns={"id": "value id"})
 
-    # add time DataFrames id column to relations table
+    # add time id column to relations table
     column = []
     for i in range(len(data['day'])):
         val = time_data[(time_data['day'] == data['day'][i]) & (time_data['time'] == data['time'][i])]
         column.append(int(val['id']))
     relations_df.insert(1, "time id", column, True)
 
-    # add location DataFrames id column to relations table
+    # add location id column to relations table
     column = []
     for i in range(len(data['id'])):
         val = location_data[(location_data['id'] == data['id'][i])]
