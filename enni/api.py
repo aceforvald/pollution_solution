@@ -13,21 +13,22 @@ def _start_api():
            6: 'so2',
            19843: 'no'}
 
-    sensors_file = pd.read_csv("C:\grad_project\pollution_solution\enni\sensors.csv")
+    cwd = os.path.dirname(os.path.realpath(__file__))
+    data_directory = os.path.join(cwd, 'data')
+    os.makedirs(data_directory, exist_ok=True)
+
+    file_name = os.path.join(data_directory, 'sensors.csv')
+    sensors_file = pd.read_csv(file_name)
+
     sensors = sensors_file[sensors_file.columns[0]]
     city = sensors_file[sensors_file.columns[-1]]
     print(sensors)
-
-    # file path for saving
-    cwd = os.path.dirname(os.path.realpath(__file__))
-    save_directory = os.path.join(cwd, 'data')
-    os.makedirs(save_directory, exist_ok=True)
 
     # save data in same csv file
     i = 0
     for sensor in sensors:
         sensor_data = get_location(sensor, API_KEY, wanted_params)
-        save_same_file(sensor_data, wanted_params, save_directory, city[i])
+        save_same_file(sensor_data, wanted_params, data_directory, city[i])
         i = i +1
 
 """
