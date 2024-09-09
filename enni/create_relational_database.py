@@ -50,7 +50,7 @@ def create_city_dim(data, save_directory):
     city_df = city_df.drop_duplicates().reset_index(drop=True)
 
     # create id column 
-    city_df.insert(0, "city_id", np.arange(len(city_df['city'])), True)
+    city_df.insert(0, "id", np.arange(len(city_df['city'])), True)
 
     # add country id column to city dimensions table
     column = []
@@ -104,7 +104,7 @@ def create_location_dim(data, save_directory):
     column = []
     for i in range(len(location_df['city'])):
         val = city_data[(city_data['city'] == location_df['city'][i]) & (city_data['city'] == location_df['city'][i])]
-        column.append(val['city_id'].values[0])
+        column.append(val['id'].values[0])
     
     location_df.insert(1, "city_id", column, True)
     location_df = location_df.drop('city', axis=1)

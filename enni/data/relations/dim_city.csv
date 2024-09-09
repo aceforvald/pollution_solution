@@ -1,4 +1,4 @@
-city_id,city,country_id
+id,city,country_id
 0,Madrid,0
 1,Berlin,1
 2,London,2
