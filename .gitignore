@@ -2,10 +2,20 @@
 # ignore generated data files
 /dags/data/*
 !/dags/data/.gitkeep
+config.ini
+
+# Airflow
+webserver_config.py
+standalone_admin_password.txt
+airflow.db
+airflow.cfg
+airflow-webserver.pid
+logs/
+
 
 # Anna's
 anna/config.ini
-anna/julilan_test.py
+anna/pg_test_connection.py
 anna/scratch.txt
 anna/data/*
 
