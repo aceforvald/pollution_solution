@@ -98,7 +98,7 @@ def create_location_dim(data, save_directory):
     # slice copy of original pandas data frame for location dimensions dataframe
     location_df = data[['id','location', 'lat', 'lon', 'city']].copy()
     
-    location_df = location_df.drop_duplicates().reset_index(drop=True)
+    location_df = location_df.drop_duplicates(subset=['id']).reset_index(drop=True)
 
     # add city id column to location dimensions table
     column = []
