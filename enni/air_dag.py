@@ -1,5 +1,3 @@
-## base exercise at https://www.youtube.com/watch?v=IH1-0hwFZRQ
-
 from airflow import DAG
 from airflow.operators.python import PythonOperator, BranchPythonOperator
 from airflow.operators.bash import BashOperator
@@ -11,7 +9,7 @@ import configparser
 
 import api
 import create_relational_database
-import to_postgres
+import postgres
 
 CURR_DIR_PATH = os.path.dirname(os.path.realpath(__file__))
 
@@ -36,7 +34,7 @@ with DAG("project_dag", start_date=datetime(2021, 1, 1),
 
             postgres_call = PythonOperator (
                     task_id="postgres_call",
-                    python_callable=to_postgres._start_post_to_postgres
+                    python_callable=postgres._start_post
             )
 
             api_call >> database_call >> postgres_call
