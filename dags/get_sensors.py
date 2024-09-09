@@ -9,6 +9,14 @@ save_directory = os.path.join(cwd, 'data')
 os.makedirs(save_directory, exist_ok=True)
 
 def add_sensors(lat, lon):
+    '''
+    Get data about existing sensors within a radius of specified lat/lon.
+
+    Returns:
+    DataFrame containing sensor information, including location, available parameters, and sensor ID.
+    If there's an error, returns empty DataFrame.
+    '''
+            
     API_KEY = '7b2fbb569507ae14141d3de0ff76044999ae3859816024ab9d2978c83bc3d804'
     base_url = 'https://api.openaq.org/v2/locations'
 
@@ -16,6 +24,7 @@ def add_sensors(lat, lon):
         "Accept": "application/json",
         "X-API-Key": API_KEY}
 
+    # parameters for API request (lat and lon provided in function call)
     params = {
         'limit': 100,
         'page': 1,
@@ -26,45 +35,88 @@ def add_sensors(lat, lon):
         'order_by': 'lastUpdated',
         'dump_raw': 'false'
     }
-
-    add_response = requests.get(base_url, params=params, headers=headers)
-    if add_response.status_code == 200:
-        add_data = add_response.json()
-
-        add_df = json_normalize(add_data['results'])
-        add_df = add_df.drop(columns=['entity',
-                                              'sources',
-                                              'isMobile',
-                                              'isAnalysis',
-                                              'sensorType',
-                                              'measurements',
-                                              'bounds',
-                                              'manufacturers'])
-        
-        # add column with all parameters of sensor
-        add_df['parameterIds'] = add_df['parameters'].apply(lambda x: [param_dict['id'] for param_dict in x])
-
-        # add columns for parameters we care about
-        add_df['has_pm25'] = add_df['parameterIds'].apply(lambda x: 1 if 2 in x else 0)
-        add_df['has_pm10'] = add_df['parameterIds'].apply(lambda x: 1 if 1 in x else 0)
-        add_df['has_so2'] = add_df['parameterIds'].apply(lambda x: 1 if 6 in x else 0)
-        add_df['has_no'] = add_df['parameterIds'].apply(lambda x: 1 if 19843 in x else 0)
-        add_df['has_o3'] = add_df['parameterIds'].apply(lambda x: 1 if 3 in x else 0)
-
-        # how many parameters that we care about does this sensor have?
-        add_df['sensorCount'] = add_df['has_pm25'] + add_df['has_pm10'] + add_df['has_so2'] + add_df['has_no'] + add_df['has_o3']
-        
-        return(add_df)
     
-    else:
-        print('Error {response.status_code}: {response.text}')
+    try:
+        # Get all sensor data for lat lon pair
+        add_response = requests.get(base_url, params=params, headers=headers)
+        if add_response.status_code == 200:
+            add_data = add_response.json()
+
+            print(f'Number of sensors: {len(add_data['results'])}')
+
+            # Ensure location has any sensors
+            if 'results' not in add_data or len(add_data['results']) == 0:
+                print(f'Uh oh, no results key in API response')
+                return pd.DataFrame()            
+            
+            add_df = json_normalize(add_data['results'])
+
+            # drop columns not needed
+            add_df = add_df.drop(columns=['entity',
+                                                'sources',
+                                                'isMobile',
+                                                'isAnalysis',
+                                                'sensorType',
+                                                'measurements',
+                                                'bounds',
+                                                'manufacturers'])
+            
+            # drop rows of sensors that have no parameters, if no sensors with parameters
+            # remain, return empty dataframe
+            add_df = add_df.dropna(subset=['parameters'])
+            if add_df.empty:
+                return pd.DataFrame()
+            
+            # add column with all parameters of sensor
+            add_df['parameterIds'] = add_df['parameters'].apply(lambda x: [param_dict['id'] for param_dict in x])
+
+            # add columns for parameters we care about
+            add_df['has_pm25'] = add_df['parameterIds'].apply(lambda x: 1 if 2 in x else 0)
+            add_df['has_pm10'] = add_df['parameterIds'].apply(lambda x: 1 if 1 in x else 0)
+            add_df['has_so2'] = add_df['parameterIds'].apply(lambda x: 1 if 6 in x else 0)
+            add_df['has_no'] = add_df['parameterIds'].apply(lambda x: 1 if 19843 in x else 0)
+            add_df['has_o3'] = add_df['parameterIds'].apply(lambda x: 1 if 3 in x else 0)
+
+            # how many parameters that we care about does this sensor have?
+            add_df['sensorCount'] = add_df['has_pm25'] + add_df['has_pm10'] + add_df['has_so2'] + add_df['has_no'] + add_df['has_o3']
+            
+            # TODO: why on earth are these suddenly not ints?!
+            add_df = add_df.infer_objects()
+
+            return add_df
+        
+    except requests.exceptions.RequestException as e:
+        print(f'API call failure: {e} CHECK {add_df.columns}')
         return pd.DataFrame()
 
-# pass new lat and lon with built df, append new df to existing
+    except ValueError as e:
+        print(f'JSON failure: {e} CHECK {add_df.columns}')
+        return pd.DataFrame()  
+
 def get_sensors(lat, lon, metro, country, sensors_df):
-    # append result of add_sensors to previous results of the call - in a dataframe?
+    '''
+    Pass new lat and lon with build df, append new df to existing.
+
+    Parameters:
+    lat
+    lon
+    metro: metro area that coordinates center
+    country: country of metro area
+    sensors_df: dataframe that contains previously collected sensors
+
+    Returns:
+    DataFrame with all locations called thus far.
+    '''
+
+    # append result of add_sensors to previous results of the call
     add_sensors_df = add_sensors(lat, lon)
 
+    if add_sensors_df is None:
+        # or add_sensors_df.empty():
+        print(f'No data for {metro}')
+        return sensors_df
+
+    # append columns with metro area and country from calling function
     add_sensors_df['metroArea'] = metro
     add_sensors_df['country'] = country
     
@@ -83,7 +135,8 @@ if __name__ == '__main__':
                  'Rome': [41.89964, 12.47248, 'IT'],
                  'Helsinki': [60.19637, 24.93295, 'FI']}
 
-    eu_capitals = {'Tiranë': [41.3305141, 19.825562857582966, 'AL'],
+    eu_capitals = {
+                'Tiranë': [41.3305141, 19.825562857582966, 'AL'],
                 'Andorra la Vella': [42.5069391, 1.5212467, 'AD'],
                 'Yerevan': [40.1776245, 44.5126174, 'AM'],
                 'Vienna': [48.2083537, 16.3725042, 'AT'],
@@ -175,10 +228,11 @@ if __name__ == '__main__':
     def get_set(cities):
         all_sensors = pd.DataFrame()
         for city in cities:
+            print(f'LOOK AT: {city}')
             all_sensors = get_sensors(cities[city][0], cities[city][1], city, cities[city][2], all_sensors)
         return all_sensors
     
-    sensors = get_set(test_locations)
+    sensors = get_set(eu_capitals)
 
     print(sensors)
 

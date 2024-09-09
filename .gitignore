@@ -1,3 +1,9 @@
+# Anna's
+anna/config.ini
+anna/julilan_test.py
+anna/scratch.txt
+anna/data/*
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
