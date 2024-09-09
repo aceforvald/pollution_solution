@@ -50,7 +50,7 @@ def create_city_dim(data, save_directory):
     city_df = city_df.drop_duplicates().reset_index(drop=True)
 
     # create id column 
-    city_df.insert(0, "city id", np.arange(len(city_df['city'])), True)
+    city_df.insert(0, "city_id", np.arange(len(city_df['city'])), True)
 
     # add country id column to city dimensions table
     column = []
@@ -58,7 +58,7 @@ def create_city_dim(data, save_directory):
         val = country_data[(country_data['Abbreviation'] == city_df['country'][i]) & (country_data['Abbreviation'] == city_df['country'][i])]
         column.append(val['id'].values[0])
     
-    city_df.insert(2, "country id", column, True)
+    city_df.insert(2, "country_id", column, True)
     city_df = city_df.drop('country', axis=1)
 
     save_file('dim_city.csv', city_df, save_directory)
@@ -104,9 +104,9 @@ def create_location_dim(data, save_directory):
     column = []
     for i in range(len(location_df['city'])):
         val = city_data[(city_data['city'] == location_df['city'][i]) & (city_data['city'] == location_df['city'][i])]
-        column.append(val['city id'].values[0])
+        column.append(val['city_id'].values[0])
     
-    location_df.insert(1, "city id", column, True)
+    location_df.insert(1, "city_id", column, True)
     location_df = location_df.drop('city', axis=1)
 
     save_file('dim_location.csv', location_df, save_directory)
@@ -146,21 +146,21 @@ def create_relations(data, save_directory):
 
     # create relations table using valus DataFrames id's 
     relations_df = value_data[['id']].copy()
-    relations_df = relations_df.rename(columns={"id": "value id"})
+    relations_df = relations_df.rename(columns={"id": "value_id"})
 
     # add time id column to relations table
     column = []
     for i in range(len(data['day'])):
         val = time_data[(time_data['day'] == data['day'][i]) & (time_data['time'] == data['time'][i])]
         column.append(val['id'].values[0])
-    relations_df.insert(1, "time id", column, True)
+    relations_df.insert(1, "time_id", column, True)
 
     # add location id column to relations table
     column = []
     for i in range(len(data['id'])):
         val = location_data[(location_data['id'] == data['id'][i])]
         column.append(val['id'].values[0])
-    relations_df.insert(2, "location id", column, True)
+    relations_df.insert(2, "location_id", column, True)
     
     save_file('relations.csv', relations_df, save_directory)
 

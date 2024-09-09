@@ -1,6 +1,6 @@
-city id,city,country id
+city_id,city,country_id
 0,Madrid,0
-1,London,1
-2,Rome,2
-3,Berlin,3
+1,Berlin,1
+2,London,2
+3,Rome,3
 4,Helsinki,4
