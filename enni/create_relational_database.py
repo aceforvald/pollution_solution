@@ -6,11 +6,17 @@ def _start_create_relational_database():
 
     # create relational_data folder for new csv files
     cwd = os.path.dirname(os.path.realpath(__file__))
-    save_directory = os.path.join(cwd, 'relational_data')
+
+    data_directory = os.path.join(cwd, 'data')
+    os.makedirs(data_directory, exist_ok=True)
+
+    save_directory = os.path.join(cwd, 'data/relations')
     os.makedirs(save_directory, exist_ok=True)
 
+
     # read data from csv file created in api.py
-    sensor_data = read_file('data\sensor_data_all.csv')
+    file_name = os.path.join(data_directory, 'sensor_data_all.csv')
+    sensor_data = read_file(file_name)
 
     # create new csv files for relational databases tables in right order
     create_country_dim(sensor_data, save_directory)
@@ -34,7 +40,9 @@ def save_file(file_name, df, save_directory):
 
 # creates csv file for city dimensions table
 def create_city_dim(data, save_directory):
-    country_data = read_file('relational_data\dim_country.csv')
+
+    file_name = os.path.join(save_directory, 'dim_country.csv')
+    country_data = read_file(file_name)
 
     # slice copy of original pandas data frame for city dimensions dataframe
     city_df = data[['city', 'country']].copy()
@@ -83,7 +91,9 @@ def create_country_dim(data, save_directory):
 
 # creates csv file for location dimensions table
 def create_location_dim(data, save_directory):
-    city_data = read_file('relational_data\dim_city.csv')
+
+    file_name = os.path.join(save_directory, 'dim_city.csv')
+    city_data = read_file(file_name)
 
     # slice copy of original pandas data frame for location dimensions dataframe
     location_df = data[['id','location', 'lat', 'lon', 'city']].copy()
@@ -124,9 +134,15 @@ def create_values_dim(data, save_directory):
     save_file('dim_values.csv', values_df, save_directory)
 
 def create_relations(data, save_directory):
-    value_data = read_file('relational_data\dim_values.csv')
-    time_data = read_file('relational_data\dim_time.csv')
-    location_data = read_file('relational_data\dim_location.csv')
+
+    value_file_name = os.path.join(save_directory, 'dim_values.csv')
+    value_data = read_file(value_file_name)
+
+    time_file_name = os.path.join(save_directory, 'dim_time.csv')
+    time_data = read_file(time_file_name)
+
+    location_file_name = os.path.join(save_directory, 'dim_location.csv')
+    location_data = read_file(location_file_name)
 
     # create relations table using valus DataFrames id's 
     relations_df = value_data[['id']].copy()

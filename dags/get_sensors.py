@@ -95,7 +95,8 @@ def add_sensors(lat, lon):
 
 def get_sensors(lat, lon, metro, country, sensors_df):
     '''
-    Pass new lat and lon with build df, append new df to existing.
+    Pass new lat and lon with build df, append new df to existing. Save
+    resulting dataframe to sensors.csv in data folder.
 
     Parameters:
     lat
