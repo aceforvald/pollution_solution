@@ -53,17 +53,23 @@ def test_connection():
 
 def _read_file(name):
     CURR_DIR_PATH = os.path.dirname(os.path.realpath(__file__))
-    return pd.read_csv(CURR_DIR_PATH + "/data/relations/" + name + ".csv", sep=",")
+    try:
+        return pd.read_csv(CURR_DIR_PATH + "/data/relations/" + name + ".csv", sep=",")
+    except Exception as e:
+        print(e)
 
 def _start_post():
     dbname, user, pw, host, port = get_postgres_config()
     print(f'Posting to the database {dbname} as {user}')
 
-    # Create postgres engine
-    postgres_engine = create_engine(
-        url = f"postgresql+psycopg2://{user}:{pw}@{host}:{port}/{dbname}",
-        creator=postgres_creator
-    )
+    try:
+        # Create postgres engine
+        postgres_engine = create_engine(
+            url = f"postgresql+psycopg2://{user}:{pw}@{host}:{port}/{dbname}",
+            creator=postgres_creator
+        )
+    except Exception as e:
+        print(e)
 
     file_names = ["relations", "dim_time", "dim_values", "dim_location", "dim_city", "dim_country"]
 
@@ -79,12 +85,17 @@ def _start_post():
 
     # Create postgres tables according to data source and add primary keys
     for (table, file_name) in zip(tables, file_names):
-        table.to_sql(name=file_name, con=postgres_engine, if_exists="replace", index=False)
-
+        try:
+            table.to_sql(name=file_name, con=postgres_engine, if_exists="replace", index=False)
+        except Exception as e:
+            print(e)
         if file_name in ["relations"]:
             continue
         else:
-            postgres_engine.execute("ALTER TABLE " + file_name + " ADD PRIMARY KEY (id);")
+            try:
+                postgres_engine.execute("ALTER TABLE " + file_name + " ADD PRIMARY KEY (id);")
+            except Exception as e:
+                print(e)
 
     # alter tables to add foreing keys
     line = """ALTER TABLE relations ADD FOREIGN KEY (value_id) REFERENCES dim_values (id);
@@ -92,7 +103,10 @@ def _start_post():
             ALTER TABLE relations ADD FOREIGN KEY (location_id) REFERENCES dim_location (id);
             ALTER TABLE dim_location ADD FOREIGN KEY (city_id) REFERENCES dim_city (id);
             ALTER TABLE dim_city ADD FOREIGN KEY (country_id) REFERENCES dim_country (id);"""
-    postgres_engine.execute(line)
+    try:
+        postgres_engine.execute(line)
+    except Exception as e:
+        print(e)
 
 print('calling _start_post()')
 _start_post()

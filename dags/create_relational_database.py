@@ -67,8 +67,10 @@ def create_city_dim(data, save_directory):
     column = []
     for i in range(len(city_df['country'])):
         val = country_data[(country_data['Abbreviation'] == city_df['country'][i]) & (country_data['Abbreviation'] == city_df['country'][i])]
-        # TODO error handling here
-        column.append(val['id'].values[0])
+        try:
+            column.append(val['id'].values[0])
+        except Exception as e:
+            print(e)
     
     city_df.insert(2, "country_id", column, True)
     city_df = city_df.drop('country', axis=1)
@@ -94,9 +96,11 @@ def create_country_dim(data, save_directory):
         row.append(i)
         val = gdp_data[(gdp_data['Abbreviation'] == country_df['country'][i]) & (gdp_data['Abbreviation'] == country_df['country'][i])]
 
-        # TODO error handling here
         for j in range(len(columns_list) -1):
-            row.append(val[columns_list[j+1]].values[0])
+            try:
+                row.append(val[columns_list[j+1]].values[0])
+            except Exception as e:
+                print(e)
 
         df.loc[len(df)] = row
 
@@ -117,8 +121,10 @@ def create_location_dim(data, save_directory):
     column = []
     for i in range(len(location_df['city'])):
         val = city_data[(city_data['city'] == location_df['city'][i]) & (city_data['city'] == location_df['city'][i])]
-        # TODO error handling here
-        column.append(val['id'].values[0])
+        try:
+            column.append(val['id'].values[0])
+        except Exception as e:
+            print(e)
     
     location_df.insert(1, "city_id", column, True)
     location_df = location_df.drop('city', axis=1)
@@ -166,16 +172,20 @@ def create_relations(data, save_directory):
     column = []
     for i in range(len(data['day'])):
         val = time_data[(time_data['day'] == data['day'][i]) & (time_data['time'] == data['time'][i])]
-        # TODO error handling here
-        column.append(val['id'].values[0])
+        try:
+            column.append(val['id'].values[0])
+        except Exception as e:
+            print(e)
     relations_df.insert(1, "time_id", column, True)
 
     # add location id column to relations table
     column = []
     for i in range(len(data['id'])):
         val = location_data[(location_data['id'] == data['id'][i])]
-        # TODO error handling here
-        column.append(val['id'].values[0])
+        try:
+            column.append(val['id'].values[0])
+        except Exception as e:
+            print(e)
     relations_df.insert(2, "location_id", column, True)
     
     save_file('relations.csv', relations_df, save_directory)
