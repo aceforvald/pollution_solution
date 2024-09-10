@@ -6,17 +6,22 @@ def _start_create_relational_database():
 
     # create relational_data folder for new csv files
     cwd = os.path.dirname(os.path.realpath(__file__))
-
     data_directory = os.path.join(cwd, 'data')
-    os.makedirs(data_directory, exist_ok=True)
-
     save_directory = os.path.join(cwd, 'data/relations')
-    os.makedirs(save_directory, exist_ok=True)
 
+    try:
+        os.makedirs(data_directory, exist_ok=True)
+        os.makedirs(save_directory, exist_ok=True)
+    except Exception as e:
+        print(e.message)
 
     # read data from csv file created in api.py
     file_name = os.path.join(data_directory, 'sensor_data_all.csv')
-    sensor_data = read_file(file_name)
+
+    try:
+        sensor_data = read_file(file_name)
+    except Exception as e :
+        print(e.message)
 
     # create new csv files for relational databases tables in right order
     create_country_dim(sensor_data, save_directory)
@@ -30,13 +35,19 @@ def _start_create_relational_database():
 def read_file(path):
     cwd = os.path.dirname(os.path.realpath(__file__))
     directory = os.path.join(cwd, path)
-    data = pd.read_csv(directory)
+    try:
+        data = pd.read_csv(directory)
+    except Exception as e:
+        print(e.message)
     return data
 
 # saves DataFrame as a csv file
 def save_file(file_name, df, save_directory):
     name = os.path.join(save_directory, file_name)
-    df.to_csv(name, mode='w', index=False)
+    try:
+        df.to_csv(name, mode='w', index=False)
+    except Exception as e:
+        print(e.message)
 
 # creates csv file for city dimensions table
 def create_city_dim(data, save_directory):
@@ -56,6 +67,7 @@ def create_city_dim(data, save_directory):
     column = []
     for i in range(len(city_df['country'])):
         val = country_data[(country_data['Abbreviation'] == city_df['country'][i]) & (country_data['Abbreviation'] == city_df['country'][i])]
+        # TODO error handling here
         column.append(val['id'].values[0])
     
     city_df.insert(2, "country_id", column, True)
@@ -82,6 +94,7 @@ def create_country_dim(data, save_directory):
         row.append(i)
         val = gdp_data[(gdp_data['Abbreviation'] == country_df['country'][i]) & (gdp_data['Abbreviation'] == country_df['country'][i])]
 
+        # TODO error handling here
         for j in range(len(columns_list) -1):
             row.append(val[columns_list[j+1]].values[0])
 
@@ -104,6 +117,7 @@ def create_location_dim(data, save_directory):
     column = []
     for i in range(len(location_df['city'])):
         val = city_data[(city_data['city'] == location_df['city'][i]) & (city_data['city'] == location_df['city'][i])]
+        # TODO error handling here
         column.append(val['id'].values[0])
     
     location_df.insert(1, "city_id", column, True)
@@ -152,6 +166,7 @@ def create_relations(data, save_directory):
     column = []
     for i in range(len(data['day'])):
         val = time_data[(time_data['day'] == data['day'][i]) & (time_data['time'] == data['time'][i])]
+        # TODO error handling here
         column.append(val['id'].values[0])
     relations_df.insert(1, "time_id", column, True)
 
@@ -159,6 +174,7 @@ def create_relations(data, save_directory):
     column = []
     for i in range(len(data['id'])):
         val = location_data[(location_data['id'] == data['id'][i])]
+        # TODO error handling here
         column.append(val['id'].values[0])
     relations_df.insert(2, "location_id", column, True)
     
