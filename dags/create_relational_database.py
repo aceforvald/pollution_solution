@@ -13,7 +13,7 @@ def _start_create_relational_database():
         os.makedirs(data_directory, exist_ok=True)
         os.makedirs(save_directory, exist_ok=True)
     except Exception as e:
-        print(e.message)
+        print(e)
 
     # read data from csv file created in api.py
     file_name = os.path.join(data_directory, 'sensor_data_all.csv')
@@ -21,7 +21,7 @@ def _start_create_relational_database():
     try:
         sensor_data = read_file(file_name)
     except Exception as e :
-        print(e.message)
+        print(e)
 
     # create new csv files for relational databases tables in right order
     create_country_dim(sensor_data, save_directory)
@@ -38,7 +38,7 @@ def read_file(path):
     try:
         data = pd.read_csv(directory)
     except Exception as e:
-        print(e.message)
+        print(e)
     return data
 
 # saves DataFrame as a csv file
@@ -47,7 +47,7 @@ def save_file(file_name, df, save_directory):
     try:
         df.to_csv(name, mode='w', index=False)
     except Exception as e:
-        print(e.message)
+        print(e)
 
 # creates csv file for city dimensions table
 def create_city_dim(data, save_directory):
