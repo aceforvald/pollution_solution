@@ -2,7 +2,7 @@
 # ignore generated data files
 /dags/data/*
 !/dags/data/.gitkeep
-config.ini
+/dags/config.ini
 
 # Airflow
 webserver_config.py
@@ -10,7 +10,7 @@ standalone_admin_password.txt
 airflow.db
 airflow.cfg
 airflow-webserver.pid
-logs/
+/logs/
 
 
 # Anna's
