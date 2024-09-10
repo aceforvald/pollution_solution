@@ -100,6 +100,7 @@ def create_country_dim(data, save_directory):
             try:
                 row.append(val[columns_list[j+1]].values[0])
             except Exception as e:
+                print(country_df)
                 print(e)
 
         df.loc[len(df)] = row
