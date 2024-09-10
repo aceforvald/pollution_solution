@@ -90,7 +90,7 @@ def create_country_dim(data, save_directory):
     country_df = data[['country']].copy()
     country_df = country_df.drop_duplicates().reset_index(drop=True)
 
-    # add gdp column to country dimension table
+    # add gdp column to country dimension tabl
     for i in range(len(country_df['country'])):
         row = []
         row.append(i)
