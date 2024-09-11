@@ -3,11 +3,6 @@ import os
 import pandas as pd
 from pandas import json_normalize
 
-# file path for saving
-cwd = os.path.dirname(os.path.realpath(__file__))
-save_directory = os.path.join(cwd, 'data')
-os.makedirs(save_directory, exist_ok=True)
-
 def add_sensors(lat, lon):
     '''
     Get data about existing sensors within a radius of specified lat/lon.
@@ -35,6 +30,11 @@ def add_sensors(lat, lon):
         'order_by': 'lastUpdated',
         'dump_raw': 'false'
     }
+
+    # # file path for saving
+    # cwd = os.path.dirname(os.path.realpath(__file__))
+    # save_directory = os.path.join(cwd, 'data')
+    # os.makedirs(save_directory, exist_ok=True)
     
     try:
         # Get all sensor data for lat lon pair
@@ -109,6 +109,11 @@ def get_sensors(lat, lon, metro, country, sensors_df):
     DataFrame with all locations called thus far.
     '''
 
+    # file path for saving
+    cwd = os.path.dirname(os.path.realpath(__file__))
+    save_directory = os.path.join(cwd, 'data')
+    os.makedirs(save_directory, exist_ok=True)
+
     # append result of add_sensors to previous results of the call
     add_sensors_df = add_sensors(lat, lon)
 
@@ -124,9 +129,21 @@ def get_sensors(lat, lon, metro, country, sensors_df):
     sensors_df = pd.concat([sensors_df, add_sensors_df], ignore_index=True)
     
     # save as csv (w/o original parameters list), return dataframe (w original parameters list)
+    '''def save_file(file_name, df, save_directory):
+    name = os.path.join(save_directory, file_name)
+    try:
+        df.to_csv(name, mode='w', index=False)
+    except Exception as e:
+        print(e)'''
+        
     sensors_to_csv = sensors_df.drop(columns=['parameters'])
     file_name = os.path.join(save_directory, 'sensors.csv')
-    sensors_to_csv.to_csv(file_name, mode='w', index=False)
+
+    try:
+        sensors_to_csv.to_csv(file_name, mode='w', index=False)
+    except Exception as e:
+        print(f'SOMEHOW NOT CREATING CSV?! Error: {e}')
+    
     return sensors_df
 
 def _get_sensors():

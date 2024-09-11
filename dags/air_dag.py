@@ -23,10 +23,10 @@ TARGET_FOLDER = CURR_DIR_PATH
 
 with DAG("project_dag", start_date=datetime(2021, 1, 1),
          schedule_interval="@daily", catchup=False) as dag:
-            sensors_call = PythonOperator(
-                    task_id='sensors_call',
-                    python_callable=get_sensors._get_sensors
-            )
+        #     sensors_call = PythonOperator(
+        #             task_id='sensors_call',
+        #             python_callable=get_sensors._get_sensors
+        #     )
             
             api_call = PythonOperator (
                     task_id="api_call",
