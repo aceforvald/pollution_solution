@@ -2,7 +2,7 @@
 # ignore generated data files
 /dags/data/*
 !/dags/data/.gitkeep
-#!/dags/data/sensors.csv
+!/dags/data/sensors.csv
 !/dags/data/world-data-2023.csv
 /dags/config.ini
 
