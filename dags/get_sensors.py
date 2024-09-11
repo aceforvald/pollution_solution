@@ -129,7 +129,7 @@ def get_sensors(lat, lon, metro, country, sensors_df):
     sensors_to_csv.to_csv(file_name, mode='w', index=False)
     return sensors_df
 
-if __name__ == '__main__':
+def _get_sensors():
     test_locations = {'Madrid': [40.42188, -3.70079, 'ES'],
                  'Berlin': [52.51998, 13.38695, 'GE'],
                  'London': [51.51081, -0.14263, 'GB'],
@@ -225,15 +225,25 @@ if __name__ == '__main__':
                 'Perm District': [58.014965, 56.246723, 'RU'],
                 'Volgograd': [48.7081906, 44.5153353, 'RU'],
                 'Odesa': [46.4843023, 30.7322878, 'UA']}
-
-    def get_set(cities):
-        all_sensors = pd.DataFrame()
-        for city in cities:
-            print(f'LOOK AT: {city}')
-            all_sensors = get_sensors(cities[city][0], cities[city][1], city, cities[city][2], all_sensors)
-        return all_sensors
     
-    sensors = get_set(eu_1_million_plus)
+    cities = eu_capitals
+
+    all_sensors = pd.DataFrame()
+    for city in cities:
+        print(f'_____{city}_____')
+        all_sensors = get_sensors(cities[city][0], cities[city][1], city, cities[city][2], all_sensors)
+    return all_sensors
+
+if __name__ == '__main__':
+
+    # def get_set(cities):
+    #     all_sensors = pd.DataFrame()
+    #     for city in cities:
+    #         print(f'LOOK AT: {city}')
+    #         all_sensors = get_sensors(cities[city][0], cities[city][1], city, cities[city][2], all_sensors)
+    #     return all_sensors
+    
+    sensors = _get_sensors()
 
     print(sensors)
 
