@@ -1,0 +1,7 @@
+{'limit': 100, 'page': 1, 'offset': 0, 'sort': 'desc', 'coordinates': '53.9024716,27.5618225', 'radius': 10000, 'order_by': 'lastUpdated', 'dump_raw': 'false'}
+
+{'meta': {'name': 'openaq-api', 'license': '', 'website': '/', 'page': 1, 'limit': 100, 'found': 0}, 'results': []}
+
+
+
+[{'id': 9741, 'city': 'Engolasters', 'name': 'Engolasters', 'entity': None, 'country': 'AD', 'sources': None, 'isMobile': False, 'isAnalysis': None, 'parameters': [...], 'sensorType': None, 'coordinates': {...}, 'lastUpdated': '2024-09-06T09:00:00+00:00', 'firstUpdated': '2017-09-14T23:00:00+00:00', 'measurements': 47504, 'bounds': [...], 'manufacturers': [...]}, {'id': 9742, 'city': 'Escaldes-Engordany', 'name': 'Escaldes-Engordany', 'entity': None, 'country': 'AD', 'sources': None, 'isMobile': False, 'isAnalysis': None, 'parameters': [...], 'sensorType': None, 'coordinates': {...}, 'lastUpdated': '2024-09-06T09:00:00+00:00', 'firstUpdated': '2017-09-14T23:00:00+00:00', 'measurements': 248809, 'bounds': [...], 'manufacturers': [...]}]

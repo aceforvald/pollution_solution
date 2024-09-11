@@ -1,0 +1,53 @@
+id,city,country_id
+0,Moscow,0
+1,Istanbul,1
+2,London,2
+3,Rome,3
+4,Baku City,4
+5,Vienna,5
+6,Hamburg,6
+7,Budapest,7
+8,Barcelona,8
+9,Munich,6
+10,Prague,9
+11,Milan,3
+12,Sofia,10
+13,Warsaw,11
+14,Bucharest,12
+15,Berlin,6
+16,Madrid,8
+17,Belgrade,13
+18,Birmingham,2
+19,Kyiv,14
+20,Yerevan,15
+21,Cologne,6
+22,Andorra la Vella,16
+23,Athens,17
+24,Reykjavik,18
+25,Dublin,19
+26,Bern,20
+27,Ankara,1
+28,Vatican City,3
+29,Brussels,21
+30,City of Sarajevo,22
+31,Nicosia,23
+32,Copenhagen,24
+33,Tallinn,25
+34,Helsinki,26
+35,Astana,27
+36,Riga,28
+37,Vilnius,29
+38,Luxembourg,30
+39,Valletta,31
+40,Chișinau,32
+41,Monaco,33
+42,Monaco,34
+43,Podgorica,35
+44,Amsterdam,36
+45,Oslo,37
+46,Lisbon,38
+47,City of San Marino,3
+48,City of San Marino,39
+49,Bratislava,40
+50,Stockholm,41
+51,Ljubljana,42

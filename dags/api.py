@@ -2,6 +2,13 @@ import requests
 import os
 import pandas as pd
 
+# counters
+checked = 0
+skipped = 0
+entered = 0
+
+run_again = []
+
 def _start_api():
     API_KEY = '7b2fbb569507ae14141d3de0ff76044999ae3859816024ab9d2978c83bc3d804'
 
@@ -26,7 +33,7 @@ def _start_api():
 
     sensors = sensors_file[sensors_file.columns[0]]
     city = sensors_file[sensors_file.columns[-1]]
-    print(sensors)
+    print(f'Checking {sensors.count()} sensors:')
 
     # save data in same csv file
     i = 0
@@ -50,12 +57,22 @@ def get_location(location_id, API_KEY, wanted_params):
 
     return sensor_response.json()
 
+
 # saves all the locations in the same csv file
 def save_same_file(sensor_data, wanted_params, save_directory, city):
+    
+    global checked
+    global skipped
+    global entered
+
+    global run_again
+
     try:
         sensor_dict = sensor_data.get('results', [])[0]
+        checked += 1
     except:
         print("row skipped, check sensors_all.csv")
+        skipped += 1
         return
 
     # create row dictionary for storing variables to keep
@@ -78,6 +95,7 @@ def save_same_file(sensor_data, wanted_params, save_directory, city):
     for param in sensor_dict.get('parameters', []):
         if param.get("parameterId") in wanted_params:
                 row.update({param['parameter']: param.get('lastValue')})
+                entered += 1
 
     # add row to csv file
     df = pd.DataFrame([row])
@@ -93,10 +111,16 @@ def save_same_file(sensor_data, wanted_params, save_directory, city):
     # remove duplicates
     try:
         df = pd.read_csv(file_name)
+        run_again.append(row['id'])
         df = df.drop_duplicates()
         df.to_csv(file_name, mode='w', index=False)
     except Exception as e:
         print(e)
+    
+
 
 #comment this when using airflow
+
 _start_api()
+
+print(f'checked: {checked}, skipped: {skipped}, entered: {entered}')

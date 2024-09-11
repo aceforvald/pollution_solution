@@ -233,7 +233,7 @@ if __name__ == '__main__':
             all_sensors = get_sensors(cities[city][0], cities[city][1], city, cities[city][2], all_sensors)
         return all_sensors
     
-    sensors = get_set(eu_capitals)
+    sensors = get_set(eu_1_million_plus)
 
     print(sensors)
 

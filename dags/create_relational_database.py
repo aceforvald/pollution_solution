@@ -16,7 +16,8 @@ def _start_create_relational_database():
         print(e)
 
     # read data from csv file created in api.py
-    file_name = os.path.join(data_directory, 'sensor_data_all.csv')
+    current_file = 'sensor_data_all.csv'
+    file_name = os.path.join(data_directory, current_file)
 
     try:
         sensor_data = read_file(file_name)
@@ -24,7 +25,7 @@ def _start_create_relational_database():
         print(e)
 
     # create new csv files for relational databases tables in right order
-    create_country_dim(sensor_data, save_directory)
+    create_country_dim(sensor_data, save_directory, data_directory)
     create_city_dim(sensor_data, save_directory)
     create_location_dim(sensor_data, save_directory)
     create_time_dim(sensor_data, save_directory)
@@ -78,9 +79,11 @@ def create_city_dim(data, save_directory):
     save_file('dim_city.csv', city_df, save_directory)
 
 # creates csv file for country dimensions table
-def create_country_dim(data, save_directory):
+def create_country_dim(data, save_directory, data_directory):
     # read data for gdp and population
-    gdp_data = read_file('world-data-2023.csv')
+    # gdp_data = read_file('world-data-2023.csv')
+    file_name = os.path.join(data_directory, 'world-data-2023.csv')
+    gdp_data = read_file(file_name)
 
     # make empty country dataframe with columns
     columns_list = ['id'] + list(gdp_data.columns)
@@ -98,6 +101,7 @@ def create_country_dim(data, save_directory):
 
         for j in range(len(columns_list) -1):
             try:
+                print(row)
                 row.append(val[columns_list[j+1]].values[0])
             except Exception as e:
                 print(country_df)
