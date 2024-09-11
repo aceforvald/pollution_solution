@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_bf4823ea37a54f0a5b13c40403f12024 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_bf4823ea37a54f0a5b13c40403f12024" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_bf4823ea37a54f0a5b13c40403f12024 = L.map(
+                "map_bf4823ea37a54f0a5b13c40403f12024",
+                {
+                    center: [50.8503, 4.3517],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 4,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_1fe5d17036f833476464fde68dad1d74 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors", "detectRetina": false, "maxNativeZoom": 19, "maxZoom": 19, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            );
+        
+    
+            tile_layer_1fe5d17036f833476464fde68dad1d74.addTo(map_bf4823ea37a54f0a5b13c40403f12024);
+        
+    
+            var circle_d758bff94f4f0aa1f3bff79f9b9340f3 = L.circle(
+                [47.516231, 14.550072],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 199.11053759136647, "stroke": true, "weight": 3}
+            ).addTo(map_bf4823ea37a54f0a5b13c40403f12024);
+        
+    
+        var popup_7cc7fd02d696c575caa3b626e8f3def8 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_4e6b02889de80a5d4172477914afa414 = $(`<div id="html_4e6b02889de80a5d4172477914afa414" style="width: 100.0%; height: 100.0%;">Country: AT<br>PM2.5: 9.955526879568323<br>PM10: 10.313460915544113<br>SO2: 3.9037712079999998<br>NO: 1.4626978983333334<br>O3: 38.90528571428571<br>Density: 109<br>Agricultural Land: 32.40%<br>Population: 8,877,067<br></div>`)[0];
+                popup_7cc7fd02d696c575caa3b626e8f3def8.setContent(html_4e6b02889de80a5d4172477914afa414);
+            
+        
+
+        circle_d758bff94f4f0aa1f3bff79f9b9340f3.bindPopup(popup_7cc7fd02d696c575caa3b626e8f3def8)
+        ;
+
+        
+    
+    
+            var circle_2ef879b35ee4959603008040429b58c9 = L.circle(
+                [50.503887, 4.469936],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 127.70172972480455, "stroke": true, "weight": 3}
+            ).addTo(map_bf4823ea37a54f0a5b13c40403f12024);
+        
+    
+        var popup_9112811c2952cace7ccd88ed96cb100b = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_dc787fc6992b57d8157ef7de516644ea = $(`<div id="html_dc787fc6992b57d8157ef7de516644ea" style="width: 100.0%; height: 100.0%;">Country: BE<br>PM2.5: 6.385086486240228<br>PM10: 9.53086220375215<br>SO2: 3.4615384615384617<br>NO: 8.258941714823784<br>O3: 38.54347826086956<br>Density: 383<br>Agricultural Land: 44.60%<br>Population: 11,484,055<br></div>`)[0];
+                popup_9112811c2952cace7ccd88ed96cb100b.setContent(html_dc787fc6992b57d8157ef7de516644ea);
+            
+        
+
+        circle_2ef879b35ee4959603008040429b58c9.bindPopup(popup_9112811c2952cace7ccd88ed96cb100b)
+        ;
+
+        
+    
+    
+            var circle_596520f8d104470153c05fc6932ce30a = L.circle(
+                [42.733883, 25.48583],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 224.0, "stroke": true, "weight": 3}
+            ).addTo(map_bf4823ea37a54f0a5b13c40403f12024);
+        
+    
+        var popup_8e644a2e305dfa4389b681f13977858d = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_278a59efdcfb09ade830548aebecd8f3 = $(`<div id="html_278a59efdcfb09ade830548aebecd8f3" style="width: 100.0%; height: 100.0%;">Country: BG<br>PM2.5: 11.2<br>PM10: 17.672857142857143<br>SO2: 7.836153846153847<br>NO: 7.632222222222222<br>O3: 76.658<br>Density: 64<br>Agricultural Land: 46.30%<br>Population: 6,975,761<br></div>`)[0];
+                popup_8e644a2e305dfa4389b681f13977858d.setContent(html_278a59efdcfb09ade830548aebecd8f3);
+            
+        
+
+        circle_596520f8d104470153c05fc6932ce30a.bindPopup(popup_8e644a2e305dfa4389b681f13977858d)
+        ;
+
+        
+    
+    
+            var circle_1eb99e98b163857be2ebd479282f5d73 = L.circle(
+                [35.126413, 33.429859],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 368.42806666666667, "stroke": true, "weight": 3}
+            ).addTo(map_bf4823ea37a54f0a5b13c40403f12024);
+        
+    
+        var popup_c36bb41b6882f5355c6a0e1d843a8438 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_3cc89da7cf92fc45a84317eaa8e32b17 = $(`<div id="html_3cc89da7cf92fc45a84317eaa8e32b17" style="width: 100.0%; height: 100.0%;">Country: CY<br>PM2.5: 18.421403333333334<br>PM10: 40.552753333333335<br>SO2: 2.826513875<br>NO: 6.0212215<br>O3: 79.73519875<br>Density: 131<br>Agricultural Land: 12.20%<br>Population: 1,198,575<br></div>`)[0];
+                popup_c36bb41b6882f5355c6a0e1d843a8438.setContent(html_3cc89da7cf92fc45a84317eaa8e32b17);
+            
+        
+
+        circle_1eb99e98b163857be2ebd479282f5d73.bindPopup(popup_c36bb41b6882f5355c6a0e1d843a8438)
+        ;
+
+        
+    
+    
+            var circle_70b1e3c342aff048aac2de0e32041617 = L.circle(
+                [49.817492, 15.472962],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 84.61666674017907, "stroke": true, "weight": 3}
+            ).addTo(map_bf4823ea37a54f0a5b13c40403f12024);
+        
+    
+        var popup_0d3c317e5c52fd090738a406ee60cc51 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_523a4bd0a0465969051dc44defae6866 = $(`<div id="html_523a4bd0a0465969051dc44defae6866" style="width: 100.0%; height: 100.0%;">Country: CZ<br>PM2.5: 4.230833337008954<br>PM10: 14.438988093818937<br>SO2: 7.425<br>NO: 7.3999999999999995<br>O3: 51.56153846153846<br>Density: 139<br>Agricultural Land: 45.20%<br>Population: 10,669,709<br></div>`)[0];
+                popup_0d3c317e5c52fd090738a406ee60cc51.setContent(html_523a4bd0a0465969051dc44defae6866);
+            
+        
+
+        circle_70b1e3c342aff048aac2de0e32041617.bindPopup(popup_0d3c317e5c52fd090738a406ee60cc51)
+        ;
+
+        
+    
+    
+            var circle_82d5817bc779a2a8f7a024cbdd0fb092 = L.circle(
+                [51.165691, 10.451526],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 194.89596147727084, "stroke": true, "weight": 3}
+            ).addTo(map_bf4823ea37a54f0a5b13c40403f12024);
+        
+    
+        var popup_ab5c12671c3199666e985a21c5fcf04a = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_df0d55bb427bf76cbe3ae7a7602bbf3b = $(`<div id="html_df0d55bb427bf76cbe3ae7a7602bbf3b" style="width: 100.0%; height: 100.0%;">Country: DE<br>PM2.5: 9.744798073863542<br>PM10: 14.302319099356984<br>SO2: 2.7989<br>NO: 16.07291891891892<br>O3: 45.48766666666667<br>Density: 240<br>Agricultural Land: 47.70%<br>Population: 83,132,799<br></div>`)[0];
+                popup_ab5c12671c3199666e985a21c5fcf04a.setContent(html_df0d55bb427bf76cbe3ae7a7602bbf3b);
+            
+        
+
+        circle_82d5817bc779a2a8f7a024cbdd0fb092.bindPopup(popup_ab5c12671c3199666e985a21c5fcf04a)
+        ;
+
+        
+    
+    
+            var circle_457a9165ab1bd1be3a0bd02d292967d6 = L.circle(
+                [56.26392, 9.501785],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.853174659940931, "stroke": true, "weight": 3}
+            ).addTo(map_bf4823ea37a54f0a5b13c40403f12024);
+        
+    
+        var popup_5be5894da3f7f31144ba60e5c306afbe = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_3a1df9fdc177fe6c40c83b0b6aeffbc7 = $(`<div id="html_3a1df9fdc177fe6c40c83b0b6aeffbc7" style="width: 100.0%; height: 100.0%;">Country: DK<br>PM2.5: 0.5426587329970466<br>PM10: 0.0<br>SO2: 4.536023390539329<br>NO: 16.79<br>O3: 54.259579648726984<br>Density: 137<br>Agricultural Land: 62.00%<br>Population: 5,818,553<br></div>`)[0];
+                popup_5be5894da3f7f31144ba60e5c306afbe.setContent(html_3a1df9fdc177fe6c40c83b0b6aeffbc7);
+            
+        
+
+        circle_457a9165ab1bd1be3a0bd02d292967d6.bindPopup(popup_5be5894da3f7f31144ba60e5c306afbe)
+        ;
+
+        
+    
+    
+            var circle_98f1d769fd8c37c9b478de0007511c58 = L.circle(
+                [58.595272, 25.013607],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 245.16013333333333, "stroke": true, "weight": 3}
+            ).addTo(map_bf4823ea37a54f0a5b13c40403f12024);
+        
+    
+        var popup_5090b497b8912a5ab460de4560b1ff61 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_557b40665920a5bb0c894b71f68a46fa = $(`<div id="html_557b40665920a5bb0c894b71f68a46fa" style="width: 100.0%; height: 100.0%;">Country: EE<br>PM2.5: 12.258006666666667<br>PM10: 32.89058571428571<br>SO2: 0.3034052857142857<br>NO: 8.258941714823784<br>O3: 85.36851428571428<br>Density: 31<br>Agricultural Land: 23.10%<br>Population: 1,331,824<br></div>`)[0];
+                popup_5090b497b8912a5ab460de4560b1ff61.setContent(html_557b40665920a5bb0c894b71f68a46fa);
+            
+        
+
+        circle_98f1d769fd8c37c9b478de0007511c58.bindPopup(popup_5090b497b8912a5ab460de4560b1ff61)
+        ;
+
+        
+    
+    
+            var circle_a8b3ca70082d1cea9faacd411bcda3f5 = L.circle(
+                [40.463667, -3.74922],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 195.42850173537727, "stroke": true, "weight": 3}
+            ).addTo(map_bf4823ea37a54f0a5b13c40403f12024);
+        
+    
+        var popup_5f6f90620b637b8e6f16d0d8a683bd6b = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_eda900374ac59ad787b7a48122cd56b4 = $(`<div id="html_eda900374ac59ad787b7a48122cd56b4" style="width: 100.0%; height: 100.0%;">Country: ES<br>PM2.5: 9.771425086768863<br>PM10: 17.590733222889178<br>SO2: 2.3<br>NO: 2.5555555555555554<br>O3: 62.79451612903226<br>Density: 94<br>Agricultural Land: 52.60%<br>Population: 47,076,781<br></div>`)[0];
+                popup_5f6f90620b637b8e6f16d0d8a683bd6b.setContent(html_eda900374ac59ad787b7a48122cd56b4);
+            
+        
+
+        circle_a8b3ca70082d1cea9faacd411bcda3f5.bindPopup(popup_5f6f90620b637b8e6f16d0d8a683bd6b)
+        ;
+
+        
+    
+    
+            var circle_1ea61dda2260e272e2eace4cd519a985 = L.circle(
+                [61.92411, 25.748151],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 203.31714333333335, "stroke": true, "weight": 3}
+            ).addTo(map_bf4823ea37a54f0a5b13c40403f12024);
+        
+    
+        var popup_3da5c68d76310b43dfd5f931e5cab50f = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_41da028f7ee2c37605672851c59b935d = $(`<div id="html_41da028f7ee2c37605672851c59b935d" style="width: 100.0%; height: 100.0%;">Country: FI<br>PM2.5: 10.165857166666667<br>PM10: 23.31765625<br>SO2: 0.4622925<br>NO: 8.258941714823784<br>O3: 86.519105<br>Density: 18<br>Agricultural Land: 7.50%<br>Population: 5,520,314<br></div>`)[0];
+                popup_3da5c68d76310b43dfd5f931e5cab50f.setContent(html_41da028f7ee2c37605672851c59b935d);
+            
+        
+
+        circle_1ea61dda2260e272e2eace4cd519a985.bindPopup(popup_3da5c68d76310b43dfd5f931e5cab50f)
+        ;
+
+        
+    
+    
+            var circle_f41fae3a39a327b7a706e5cfacb472e5 = L.circle(
+                [46.227638, 2.213749],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 59.0, "stroke": true, "weight": 3}
+            ).addTo(map_bf4823ea37a54f0a5b13c40403f12024);
+        
+    
+        var popup_a13eea681c41c750a37acba8ebed9086 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_a3e4cf63245e401342f1316aed6b8b5c = $(`<div id="html_a3e4cf63245e401342f1316aed6b8b5c" style="width: 100.0%; height: 100.0%;">Country: FR<br>PM2.5: 2.95<br>PM10: 17.68<br>SO2: 4.536023390539329<br>NO: 9.966666666666667<br>O3: 54.259579648726984<br>Density: 119<br>Agricultural Land: 52.40%<br>Population: 67,059,887<br></div>`)[0];
+                popup_a13eea681c41c750a37acba8ebed9086.setContent(html_a3e4cf63245e401342f1316aed6b8b5c);
+            
+        
+
+        circle_f41fae3a39a327b7a706e5cfacb472e5.bindPopup(popup_a13eea681c41c750a37acba8ebed9086)
+        ;
+
+        
+    
+    
+            var circle_e54b52c76808906d3c4c26aa991a739d = L.circle(
+                [39.074208, 21.824312],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 237.5, "stroke": true, "weight": 3}
+            ).addTo(map_bf4823ea37a54f0a5b13c40403f12024);
+        
+    
+        var popup_e70d8d4c090c4a48fcc3cdc7ba4a3965 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_8686e2c968342407a866484866042c16 = $(`<div id="html_8686e2c968342407a866484866042c16" style="width: 100.0%; height: 100.0%;">Country: GR<br>PM2.5: 11.875<br>PM10: 23.642857142857142<br>SO2: 3.0<br>NO: 15.45<br>O3: 36.541666666666664<br>Density: 81<br>Agricultural Land: 47.60%<br>Population: 10,716,322<br></div>`)[0];
+                popup_e70d8d4c090c4a48fcc3cdc7ba4a3965.setContent(html_8686e2c968342407a866484866042c16);
+            
+        
+
+        circle_e54b52c76808906d3c4c26aa991a739d.bindPopup(popup_e70d8d4c090c4a48fcc3cdc7ba4a3965)
+        ;
+
+        
+    
+    
+            var circle_c6397ea2fe5bf0e6782049a12e6d6f19 = L.circle(
+                [47.162494, 19.503304],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 274.44444444444446, "stroke": true, "weight": 3}
+            ).addTo(map_bf4823ea37a54f0a5b13c40403f12024);
+        
+    
+        var popup_7752cdeb8c731336cbdd70ae2cd70df1 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_e6f735a167c9ace9381e3adc80a2717f = $(`<div id="html_e6f735a167c9ace9381e3adc80a2717f" style="width: 100.0%; height: 100.0%;">Country: HU<br>PM2.5: 13.722222222222221<br>PM10: 19.249369375<br>SO2: 6.555702181818182<br>NO: 8.258941714823784<br>O3: 36.47511005263158<br>Density: 107<br>Agricultural Land: 58.40%<br>Population: 9,769,949<br></div>`)[0];
+                popup_7752cdeb8c731336cbdd70ae2cd70df1.setContent(html_e6f735a167c9ace9381e3adc80a2717f);
+            
+        
+
+        circle_c6397ea2fe5bf0e6782049a12e6d6f19.bindPopup(popup_7752cdeb8c731336cbdd70ae2cd70df1)
+        ;
+
+        
+    
+    
+            var circle_71a658e290815ffa1e52a1f16d2c9de1 = L.circle(
+                [41.87194, 12.56738],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 246.83086, "stroke": true, "weight": 3}
+            ).addTo(map_bf4823ea37a54f0a5b13c40403f12024);
+        
+    
+        var popup_cb2f758564e99cab6092efa4bdd03a37 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_f3c8d5aa178e0c5df4276ae55cd36958 = $(`<div id="html_f3c8d5aa178e0c5df4276ae55cd36958" style="width: 100.0%; height: 100.0%;">Country: IT<br>PM2.5: 12.341543<br>PM10: 44.564324705405404<br>SO2: 2.7669193<br>NO: 2.21875<br>O3: 50.51583082121212<br>Density: 206<br>Agricultural Land: 43.20%<br>Population: 60,297,396<br></div>`)[0];
+                popup_cb2f758564e99cab6092efa4bdd03a37.setContent(html_f3c8d5aa178e0c5df4276ae55cd36958);
+            
+        
+
+        circle_71a658e290815ffa1e52a1f16d2c9de1.bindPopup(popup_cb2f758564e99cab6092efa4bdd03a37)
+        ;
+
+        
+    
+    
+            var circle_f149cd7a7735d69268f0630d0d57cc6b = L.circle(
+                [55.169438, 23.881275],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 256.9481309154518, "stroke": true, "weight": 3}
+            ).addTo(map_bf4823ea37a54f0a5b13c40403f12024);
+        
+    
+        var popup_c3852a494147eeefad81196ee95bce6a = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_347c18bb3865e663f2cd0f5f818cd97c = $(`<div id="html_347c18bb3865e663f2cd0f5f818cd97c" style="width: 100.0%; height: 100.0%;">Country: LT<br>PM2.5: 12.847406545772591<br>PM10: 21.22556160011086<br>SO2: 4.536023390539329<br>NO: 8.258941714823784<br>O3: 54.259579648726984<br>Density: 43<br>Agricultural Land: 47.20%<br>Population: 2,786,844<br></div>`)[0];
+                popup_c3852a494147eeefad81196ee95bce6a.setContent(html_347c18bb3865e663f2cd0f5f818cd97c);
+            
+        
+
+        circle_f149cd7a7735d69268f0630d0d57cc6b.bindPopup(popup_c3852a494147eeefad81196ee95bce6a)
+        ;
+
+        
+    
+    
+            var circle_0e942c4fb91b09684074e75442eb30cc = L.circle(
+                [49.815273, 6.129583],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 85.0, "stroke": true, "weight": 3}
+            ).addTo(map_bf4823ea37a54f0a5b13c40403f12024);
+        
+    
+        var popup_ae657d990e5522ac4be00e1047b57a75 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_02402fb251569862c01c2a164e5263fa = $(`<div id="html_02402fb251569862c01c2a164e5263fa" style="width: 100.0%; height: 100.0%;">Country: LU<br>PM2.5: 4.25<br>PM10: 11.25<br>SO2: 3.55<br>NO: 5.266666666666667<br>O3: 40.0<br>Density: 242<br>Agricultural Land: 53.70%<br>Population: 645,397<br></div>`)[0];
+                popup_ae657d990e5522ac4be00e1047b57a75.setContent(html_02402fb251569862c01c2a164e5263fa);
+            
+        
+
+        circle_0e942c4fb91b09684074e75442eb30cc.bindPopup(popup_ae657d990e5522ac4be00e1047b57a75)
+        ;
+
+        
+    
+    
+            var circle_e9f5401c2c825413ca38aedda6c575d9 = L.circle(
+                [56.879635, 24.603189],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 330.0, "stroke": true, "weight": 3}
+            ).addTo(map_bf4823ea37a54f0a5b13c40403f12024);
+        
+    
+        var popup_7fbb4cb1e5c51e3667b7287bf636079b = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_384c76c2579487b869c067d2e92de173 = $(`<div id="html_384c76c2579487b869c067d2e92de173" style="width: 100.0%; height: 100.0%;">Country: LV<br>PM2.5: 16.5<br>PM10: 38.166666666666664<br>SO2: 0.9213333333333332<br>NO: 8.258941714823784<br>O3: 72.012884<br>Density: 30<br>Agricultural Land: 31.10%<br>Population: 1,912,789<br></div>`)[0];
+                popup_7fbb4cb1e5c51e3667b7287bf636079b.setContent(html_384c76c2579487b869c067d2e92de173);
+            
+        
+
+        circle_e9f5401c2c825413ca38aedda6c575d9.bindPopup(popup_7fbb4cb1e5c51e3667b7287bf636079b)
+        ;
+
+        
+    
+    
+            var circle_d200afc1b641002564a9161a43dabb51 = L.circle(
+                [35.937496, 14.375416],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 219.77668571428575, "stroke": true, "weight": 3}
+            ).addTo(map_bf4823ea37a54f0a5b13c40403f12024);
+        
+    
+        var popup_2603a314a208b4d1e0cde0a3ffd3e473 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_9f8ba965cfb3c953067fb0cf01bf3836 = $(`<div id="html_9f8ba965cfb3c953067fb0cf01bf3836" style="width: 100.0%; height: 100.0%;">Country: MT<br>PM2.5: 10.988834285714287<br>PM10: 27.979748333333333<br>SO2: 0.280615<br>NO: 4.197103333333334<br>O3: 86.728568<br>Density: 1,380<br>Agricultural Land: 32.40%<br>Population: 502,653<br></div>`)[0];
+                popup_2603a314a208b4d1e0cde0a3ffd3e473.setContent(html_9f8ba965cfb3c953067fb0cf01bf3836);
+            
+        
+
+        circle_d200afc1b641002564a9161a43dabb51.bindPopup(popup_2603a314a208b4d1e0cde0a3ffd3e473)
+        ;
+
+        
+    
+    
+            var circle_8fdc679005661f5e2597b46900517798 = L.circle(
+                [52.132633, 5.291266],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 117.29166659365097, "stroke": true, "weight": 3}
+            ).addTo(map_bf4823ea37a54f0a5b13c40403f12024);
+        
+    
+        var popup_8c2d7e10fd4f2657031ed2db638854be = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_e6b3b8928089f09d3174954bb86fcb4c = $(`<div id="html_e6b3b8928089f09d3174954bb86fcb4c" style="width: 100.0%; height: 100.0%;">Country: NL<br>PM2.5: 5.8645833296825485<br>PM10: 8.584722221746214<br>SO2: 1.4<br>NO: 8.258941714823784<br>O3: 66.025<br>Density: 508<br>Agricultural Land: 53.30%<br>Population: 17,332,850<br></div>`)[0];
+                popup_8c2d7e10fd4f2657031ed2db638854be.setContent(html_e6b3b8928089f09d3174954bb86fcb4c);
+            
+        
+
+        circle_8fdc679005661f5e2597b46900517798.bindPopup(popup_8c2d7e10fd4f2657031ed2db638854be)
+        ;
+
+        
+    
+    
+            var circle_75b31cf706df5c7e0b3a3066916a71b8 = L.circle(
+                [51.919438, 19.145136],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 698.5788986857732, "stroke": true, "weight": 3}
+            ).addTo(map_bf4823ea37a54f0a5b13c40403f12024);
+        
+    
+        var popup_8e3ccd03dca4e8d6421d265f3e1aca03 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_ae4dc9577f5598a244344309e822081b = $(`<div id="html_ae4dc9577f5598a244344309e822081b" style="width: 100.0%; height: 100.0%;">Country: PL<br>PM2.5: 34.92894493428866<br>PM10: 42.26466220283508<br>SO2: 5.619090909090908<br>NO: 8.258941714823784<br>O3: 20.27927777777778<br>Density: 124<br>Agricultural Land: 46.90%<br>Population: 37,970,874<br></div>`)[0];
+                popup_8e3ccd03dca4e8d6421d265f3e1aca03.setContent(html_ae4dc9577f5598a244344309e822081b);
+            
+        
+
+        circle_75b31cf706df5c7e0b3a3066916a71b8.bindPopup(popup_8e3ccd03dca4e8d6421d265f3e1aca03)
+        ;
+
+        
+    
+    
+            var circle_2d9f382f3ff2f093a65583726c4d4531 = L.circle(
+                [39.399872, -8.224454],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 148.83333285649618, "stroke": true, "weight": 3}
+            ).addTo(map_bf4823ea37a54f0a5b13c40403f12024);
+        
+    
+        var popup_3b6ef3c35deae6e1e71053d0d319b603 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_4fcf33834b1f3f118d465b3c683e800f = $(`<div id="html_4fcf33834b1f3f118d465b3c683e800f" style="width: 100.0%; height: 100.0%;">Country: PT<br>PM2.5: 7.441666642824809<br>PM10: 5.206944425900778<br>SO2: 2.025<br>NO: 8.258941714823784<br>O3: 89.45555555555556<br>Density: 111<br>Agricultural Land: 39.50%<br>Population: 10,269,417<br></div>`)[0];
+                popup_3b6ef3c35deae6e1e71053d0d319b603.setContent(html_4fcf33834b1f3f118d465b3c683e800f);
+            
+        
+
+        circle_2d9f382f3ff2f093a65583726c4d4531.bindPopup(popup_3b6ef3c35deae6e1e71053d0d319b603)
+        ;
+
+        
+    
+    
+            var circle_98c65d8c5ed60a7e8c22f1e91c054417 = L.circle(
+                [45.943161, 24.96676],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 108.4676369111111, "stroke": true, "weight": 3}
+            ).addTo(map_bf4823ea37a54f0a5b13c40403f12024);
+        
+    
+        var popup_54da9ff32b71a9d14682969ff9113571 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_84700b65ff0446d12eab470cf999d48d = $(`<div id="html_84700b65ff0446d12eab470cf999d48d" style="width: 100.0%; height: 100.0%;">Country: RO<br>PM2.5: 5.423381845555555<br>PM10: 16.318404711170214<br>SO2: 35.973775007142855<br>NO: 8.258941714823784<br>O3: 54.44866870888889<br>Density: 84<br>Agricultural Land: 58.80%<br>Population: 19,356,544<br></div>`)[0];
+                popup_54da9ff32b71a9d14682969ff9113571.setContent(html_84700b65ff0446d12eab470cf999d48d);
+            
+        
+
+        circle_98c65d8c5ed60a7e8c22f1e91c054417.bindPopup(popup_54da9ff32b71a9d14682969ff9113571)
+        ;
+
+        
+    
+    
+            var circle_00b7d9fc779d2b5a1f14ee608160c036 = L.circle(
+                [60.128161, 18.643501],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 1413.6956714285716, "stroke": true, "weight": 3}
+            ).addTo(map_bf4823ea37a54f0a5b13c40403f12024);
+        
+    
+        var popup_cbc039081b3589fbfd268cb550c75876 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_cc540218a01b14da24edce543cedde9c = $(`<div id="html_cc540218a01b14da24edce543cedde9c" style="width: 100.0%; height: 100.0%;">Country: SE<br>PM2.5: 70.68478357142858<br>PM10: 24.51639275<br>SO2: 4.536023390539329<br>NO: 8.258941714823784<br>O3: 59.72385<br>Density: 25<br>Agricultural Land: 7.40%<br>Population: 10,285,453<br></div>`)[0];
+                popup_cbc039081b3589fbfd268cb550c75876.setContent(html_cc540218a01b14da24edce543cedde9c);
+            
+        
+
+        circle_00b7d9fc779d2b5a1f14ee608160c036.bindPopup(popup_cbc039081b3589fbfd268cb550c75876)
+        ;
+
+        
+    
+    
+            var circle_afbc7dfa33e9d16f87c07d2d15bd898a = L.circle(
+                [46.151241, 14.995463],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 81.66666666666666, "stroke": true, "weight": 3}
+            ).addTo(map_bf4823ea37a54f0a5b13c40403f12024);
+        
+    
+        var popup_d9a381b47cac74a7580fdd2b1d172662 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_6362bfd03d9610278f71035319b60f99 = $(`<div id="html_6362bfd03d9610278f71035319b60f99" style="width: 100.0%; height: 100.0%;">Country: SI<br>PM2.5: 4.083333333333333<br>PM10: 17.062<br>SO2: 4.536023390539329<br>NO: 8.258941714823784<br>O3: 42.67<br>Density: 103<br>Agricultural Land: 30.70%<br>Population: 2,087,946<br></div>`)[0];
+                popup_d9a381b47cac74a7580fdd2b1d172662.setContent(html_6362bfd03d9610278f71035319b60f99);
+            
+        
+
+        circle_afbc7dfa33e9d16f87c07d2d15bd898a.bindPopup(popup_d9a381b47cac74a7580fdd2b1d172662)
+        ;
+
+        
+    
+    
+            var circle_94217d50ccd1f76594e6fbbff9812d4e = L.circle(
+                [48.669026, 19.699024],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.6, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 158.16507692307692, "stroke": true, "weight": 3}
+            ).addTo(map_bf4823ea37a54f0a5b13c40403f12024);
+        
+    
+        var popup_5e833b0c1cd8d70a9d98109657064a4e = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_5374ea1e81663a8d408b61a1d10a5967 = $(`<div id="html_5374ea1e81663a8d408b61a1d10a5967" style="width: 100.0%; height: 100.0%;">Country: SK<br>PM2.5: 7.908253846153846<br>PM10: 13.413367825714285<br>SO2: 3.8929910588888887<br>NO: 0.80297496<br>O3: 39.391771428571424<br>Density: 114<br>Agricultural Land: 39.20%<br>Population: 5,454,073<br></div>`)[0];
+                popup_5e833b0c1cd8d70a9d98109657064a4e.setContent(html_5374ea1e81663a8d408b61a1d10a5967);
+            
+        
+
+        circle_94217d50ccd1f76594e6fbbff9812d4e.bindPopup(popup_5e833b0c1cd8d70a9d98109657064a4e)
+        ;
+
+        
+    
+</script>
+</html>
